@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './ProfileUpdate.css'
 import assets from '../../assets/assets'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -6,17 +6,18 @@ import { auth, db } from '../../config/firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { AppContext } from '../../context/AppContext'
 
 const ProfileUpdate = () => {
 
 
-  const profileUpdate = (e) => {
-    e.preventDefault();
+  const profileUpdate = async (event) => {
+    event.preventDefault();
     try {
       if (!name) {
         toast.error('Please add Your Name')
       }
-      const docRef = doc(db,'users',user.uid);
+      const docRef = doc(db,'users', uid);
       if (name) {
         updateDoc(docRef,{
           bio:bio,
@@ -28,16 +29,20 @@ const ProfileUpdate = () => {
           bio:bio,
         })
       }
+      const snap = await getDoc(docRef);
+      setUserData(snap.data());
+      navigate('/chat')
     } catch (error) {
-      
+      console.error(error);
+      toast.error('Something Went Wrong');
     }
   }
 
 
-  // const [image,setImage] = useState(false)
   const [name,setName] = useState("");
   const [bio,setBio] = useState("");
   const [uid,setUid] = useState("");
+  const { setUserData } =  useContext(AppContext)
 
   const navigate = useNavigate()
 
@@ -59,7 +64,7 @@ const ProfileUpdate = () => {
         }
       }
     })
-  })
+  },[])
 
 
   return (
