@@ -42,15 +42,15 @@ const AppContextProvider = (props) =>{
         if (userData) {
             const chatRef = doc(db,'chats',userData.id);
             const unSub = onSnapshot(chatRef, async (res)=>{
-                const chatItmes = res.data().chatData;
+                const chatItmes = res.data().chatsData;
                 const tempData = [];
                 for (const item of chatItmes) {
-                    const userRef = doc(db,'chats',item.rId);
+                    const userRef = doc(db,'users',item.rId);
                     const userSnap = await getDoc(userRef);
-                    const userData = userSnap.data()
+                    const userData = userSnap.data();
                     tempData.push({...item,userData})
                 }
-                setChatData(tempData.sort((a,b)=>{b.updateAt - a.updateAt}))
+                setChatData(tempData.sort((a,b)=>b.updatedAt - a.updatedAt))
             })
 
 
