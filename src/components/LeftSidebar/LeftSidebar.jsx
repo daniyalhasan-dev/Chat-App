@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
-  const {userData, chatData} = useContext(AppContext)
+  const {userData, chatData, chatUser, setChatUser, messagesId, setMessagesId} = useContext(AppContext)
   const [user,setUser] = useState(null);
   const [showSearch,setShowSearch] = useState(false);
 
@@ -83,6 +83,11 @@ const LeftSidebar = () => {
     }
   }
 
+  const setChat = async (item) =>{
+    setMessagesId(item.messagesId);
+    setChatUser(item)
+  }
+
   return (
     <div className="ls">
       <div className="ls-top">
@@ -113,8 +118,8 @@ const LeftSidebar = () => {
         ? <div onClick={addChat} className="friends add-user">
           <p>{user.name}</p>
         </div>
-        : chatData.map((item, index) => (
-            <div className="friends" key={index}>
+        : (chatData || []).map((item, index) => (
+            <div onClick={()=>setChat(item)} className="friends" key={index}>
               <img src={assets.profile_img} alt="" />
               <div>
                 <p>{item.userData.name}</p>
