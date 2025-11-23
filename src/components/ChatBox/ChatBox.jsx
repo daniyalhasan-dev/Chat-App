@@ -85,7 +85,7 @@ const ChatBox = () => {
 
       <div className="chat-msg">
         {messages.map((msg,index)=>{
-          <div key={index} className={msg.sId === userData.id ? "s-msg" : "r-msg"}>
+            return <div key={index} className={msg.sId === userData.id ? "s-msg" : "r-msg"}>
           <p className="msg">{msg.text}</p>
           <div>
             {/* <img src={assets.profile_img} alt="" /> */}
@@ -102,7 +102,8 @@ const ChatBox = () => {
         <label htmlFor="image">
           <img src={assets.gallery_icon} alt="" />
         </label>
-        <img onClick={sendMessage} src={assets.send_button} alt="" />
+        <button onClick={sendMessage} >asad</button>
+      {/*  <img onClick={sendMessage} src={assets.send_button} alt="" />*/}
       </div>
     </div>
   )
