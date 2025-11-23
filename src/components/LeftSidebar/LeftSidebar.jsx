@@ -121,7 +121,7 @@ console.log("messagesId",messagesId)
           <p>{user.name}</p>
         </div>
         : (chatData || []).map((item, index) => (
-            <div onClick={()=>setChat(item)} className="friends" key={index}>
+            <div onClick={()=>setChat(item)}   className="friends" key={index}>
               <img src={assets.profile_img} alt="" />
               <div>
                 <p>{item.userData.name}</p>

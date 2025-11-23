@@ -16,10 +16,10 @@
 }
 
 .rs-profile img {
-    width: 120px;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    border: 3px solid #003283;
+    width: 150px;
+    /* aspect-ratio: 1/1; */
+    /* border-radius: 50%; */
+    /* border: 3px solid #003283; */
 }
 
 .rs-profile h3 {
