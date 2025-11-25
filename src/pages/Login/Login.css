@@ -64,3 +64,56 @@
     color: #077EFF;
     cursor: pointer;
 }
+
+/* Tablets */
+@media (max-width: 900px) {
+    .login {
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px 20px;
+    }
+
+    .login .logo {
+        width: 160px;
+    }
+
+    .login-form {
+        max-width: 430px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .login {
+        padding: 20px;
+    }
+
+    .login .logo {
+        width: 140px;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 20px 18px;
+        border-radius: 10px;
+    }
+
+    .form-input {
+        font-size: 13px;
+        padding: 9px 10px;
+    }
+
+    .login-form button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .login-term p {
+        font-size: 11px;
+    }
+
+    .login-toggle {
+        font-size: 12px;
+    }
+}
